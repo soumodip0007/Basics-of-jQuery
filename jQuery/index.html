@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>jQuery Tutorial</title>
+    <style>
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #000;
+        padding: 5px 20px;
+      }
+      .mobile-navbar {
+        border: 1px solid #000;
+        padding: 5px 20px;
+        margin-top: 0;
+        display: none;
+      }
+      .nav-list ul {
+        display: flex;
+        list-style: none;
+      }
+      .nav-list li {
+        margin-left: 15px;
+      }
+      .fa-bars {
+        display: none;
+      }
+      .mobile-navbar ul {
+        list-style: none;
+      }
+      .box {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #000;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      .red {
+        background-color: red;
+      }
+      .container {
+        max-width: 400px;
+        border: 1px solid #000;
+        padding: 20px;
+        margin-top: 20px;
+      }
+      form {
+        margin-top: 20px;
+        border: 1px solid #000;
+        padding: 20px;
+        max-width: 400px;
+      }
+      form input {
+        width: 80%;
+        margin-bottom: 10px;
+        padding: 7px;
+      }
+      form button {
+        padding: 7px;
+        cursor: pointer;
+      }
+      @media only screen and (max-width: 500px) {
+        .fa-bars {
+          display: block;
+        }
+        .listItem {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>jQuery Tutorial</h1>
+    <p id="para">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ducimus
+      quis vitae soluta est quibusdam laboriosam expedita ut sit itaque!
+    </p>
+    <button id="hideBtn">Hide the Paragraph</button>
+    <button id="showBtn">Show the Paragraph</button>
+    <button id="toggleBtn">Toggle</button>
+    <hr />
+    <nav class="navbar">
+      <div class="nav-logo">
+        <h1>Navbar</h1>
+      </div>
+      <div class="nav-list">
+        <ul>
+          <li class="listItem">Home</li>
+          <li class="listItem">About</li>
+          <li class="listItem">Services</li>
+          <li class="listItem">Contact</li>
+          <li><i class="fa-solid fa-bars"></i></li>
+        </ul>
+      </div>
+    </nav>
+    <nav class="mobile-navbar">
+      <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Services</li>
+        <li>Contact</li>
+      </ul>
+    </nav>
+    <div class="box"></div>
+    <button id="redBtn">Redden this Box</button>
+    <button id="removeRed">Decolorize this Box</button>
+    <br />
+    <img
+      id="myImage"
+      src="https://www.shutterstock.com/image-vector/sample-red-square-grunge-stamp-260nw-338250266.jpg"
+      alt="Image"
+    /><br />
+    <button id="changeImage">Change the Image</button>
+    <div class="container">
+      <p id="text">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda odit
+        quidem illo. Quasi tenetur perspiciatis commodi. Minima voluptatibus
+        fugiat, saepe soluta quo quidem, ipsa voluptatem molestiae enim quod
+        atque mollitia.
+      </p>
+      <button id="changeText">Change the contents of this paragraph</button>
+    </div>
+    <hr />
+    <form>
+      <input id="name" type="text" placeholder="Enter your name" />
+      <button id="submit">Submit</button>
+      <p id="line"></p>
+    </form>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+      integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- <script>
+      const hideBtn = document.querySelector("#hideBtn");
+      const para = document.querySelector("#para");
+      hideBtn.addEventListener("click", () => {
+        para.style.display = "none";
+      });
+      showBtn.addEventListener("click", () => {
+        para.style.display = "block";
+      });
+    </script> -->
+    <script>
+      $("document").ready(() => {
+        $("#hideBtn").click(() => {
+          $("#para").hide();
+        });
+        $("#showBtn").click(() => {
+          $("#para").show();
+        });
+        $("#toggleBtn").click(() => {
+          $("#para").toggle();
+        });
+        $(".fa-bars").click(() => {
+          $(".mobile-navbar").toggle();
+        });
+        $(window).on("resize", () => {
+          if ($(window).width() > 500) {
+            $(".mobile-navbar").hide();
+          }
+        });
+        $("#redBtn").click(() => {
+          $(".box").addClass("red");
+        });
+        $("#removeRed").click(() => {
+          $(".box").removeClass("red");
+        });
+        $("#changeImage").click(() => {
+          $("#myImage").attr(
+            "src",
+            "https://media.istockphoto.com/id/1161352480/vector/sample-sign-sample-square-speech-bubble-sample.jpg?s=612x612&w=0&k=20&c=qZ480B32q1qGLxoTZEaXcxDB4BMCMDGAGnDQ0hEJ_I8="
+          );
+        });
+        $("#changeText").click(() => {
+          $("#text").text("This is the changed paragraph!");
+        });
+        $("#submit").click((e) => {
+          e.preventDefault();
+          $("#line").text(`Welcome, ${$("#name").val()}!`);
+        });
+      });
+    </script>
+  </body>
+</html>
